@@ -60,10 +60,12 @@
                         
                         // 課題4-3. ここにコードを書く
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
-                        const itemStock = document.getElementById("item_area");
-                        itemStock.innerHTML += this.stock;
+                        const itemStock = document.getElementById("stock" + this.id);
+                        itemStock.textContent = this.stock;
                         
-                    } else console.log(this.name+"は商品の在庫がないため購入できません。");
+                    } else {
+                        console.log(this.name+"は商品の在庫がないため購入できません。");
+                    }
                 }
             } // End of Item class
 
@@ -87,7 +89,9 @@
                 itemArea.innerHTML += `
                 <tr><td>${item_list[i].name}</td>
                     <td>${item_list[i].price}</td>
-                    <td><button class="buy itme" type="button">購入</button>`
+                    <td id="stock${item_list[i].id}">${item_list[i].stock}</td>
+                    <td><button id="button${item_list[i].id}" class="buy item" type="button">購入</button></td>
+                </tr>`
             }
 
             // クリックイベント時の購入処理の設定
